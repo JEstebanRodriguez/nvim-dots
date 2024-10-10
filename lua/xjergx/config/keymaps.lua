@@ -5,6 +5,9 @@ end
 -- ====== NATIVE FUNCTIONALITIES KEYMAPS ======
 keymap("n", "n", "nzzzv", options("Next search result"))
 keymap("n", "N", "Nzzzv", options("Previous search result"))
+keymap("n", "<C-6>", "<C-^>", options("Previous buffer"))
+
+keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", options("Clear search highlights"))
 
 keymap("n", "<leader>tsv", ":vsp term://zsh<CR>", options("Open [T]erminal [V]ertical"))
 keymap("n", "<leader>tsh", ":sp term://zsh<CR>", options("Open [T]erminal [H]orizontal"))
@@ -70,9 +73,9 @@ keymap("n", "<leader>hs", "<CMD>:split<CR>", options("Horizontal Split"))
 keymap("n", "<leader>fl", "<CMD>:LazyGit<CR>", options("LazyGit"))
 
 -- ====== Tiny Code Actions ======
-keymap("n", "<leader>ca", function()
-	require("tiny-code-action").code_action()
-end, options("Code Action"))
+-- keymap("n", "<leader>ca", function()
+-- 	require("tiny-code-action").code_action()
+-- end, options("Code Action"))
 
 -- ====== Oil ======
 keymap("n", "-", "<CMD>Oil --float<CR>", options("Open parent directory"))
