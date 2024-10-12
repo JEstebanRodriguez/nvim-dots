@@ -5,30 +5,20 @@ return {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
+		lazy = false,
 		config = function()
-			require("catppuccin").setup({
-				flavour = "mocha",
-				transparent_background = true,
-				dim_inactive = {
-					enabled = false,
-					shade = "dark",
-					percentage = 0.15,
-				},
-			})
-			vim.cmd.colorscheme("catppuccin")
+			require("catppuccin").setup({})
+			vim.cmd("coloscheme catppuccin")
 		end,
 	},
 
 	{ "rose-pine/neovim", name = "rose-pine" },
-	-- { "sainnhe/everforest", name = "everforest" },
-	{ "rebelot/kanagawa.nvim", name = "kanagawa" },
 
-	{ "sainnhe/sonokai", name = "sonokai", lazy = false },
+	{ "rebelot/kanagawa.nvim", name = "kanagawa" },
 
 	{
 		"sho-87/kanagawa-paper.nvim",
 		lazy = false,
-		priority = 1000,
 		opts = {
 			overrides = function(colors)
 				local theme = colors.theme
@@ -44,10 +34,8 @@ return {
 		},
 	},
 	-- { "xiyaowong/transparent.nvim", lazy = false, priority = 1000, opts = {} },
-	{ "embark-theme/vim", name = "embark", lazy = false, priority = 1000, opts = {} },
+	{ "embark-theme/vim", name = "embark", lazy = false, opts = {} },
 	{ name = "dracula", lazy = false, "maxmx03/dracula.nvim" },
-	{ "bluz71/vim-moonfly-colors", lazy = false, name = "moonfly" },
-	{ "bluz71/vim-nightfly-guicolors", lazy = false, name = "nightfly" },
 	{ "pauchiner/pastelnight.nvim", lazy = false, name = "pastelnight" },
 	{ "EdenEast/nightfox.nvim", lazy = false, name = "nightfox" },
 	{ "hardhackerlabs/theme-vim", name = "hardhackerlabs", lazy = false },
@@ -55,12 +43,9 @@ return {
 	{ "drewtempelmeyer/palenight.vim", name = "palenight", lazy = false },
 	{ "Shadorain/shadotheme", name = "shadotheme", lazy = false },
 	{ "audibleblink/hackthebox.vim", name = "hackthebox", lazy = false },
-	{ "presindent/ethereal.nvim", name = "ethereal", lazy = false },
 	{ "Jas-SinghFSU/drappuccin", lazy = false, name = "drappuccin" },
 	{ "comfysage/aurora", lazy = false, name = "aurora" },
 	{ "neanias/everforest-nvim", lazy = false, name = "everforest" },
-	{ "ChristianChiarulli/nvcode-color-schemes.vim", lazy = false, name = "nvcode" },
 	{ "marko-cerovac/material.nvim", lazy = false, name = "material" },
-	{ "nvimdev/zephyr-nvim", lazy = false, name = "zephyr" },
 	{ "wuelnerdotexe/vim-enfocado", lazy = false, name = "enfocado" },
 }

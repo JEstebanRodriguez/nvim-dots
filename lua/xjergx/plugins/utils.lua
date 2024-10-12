@@ -170,23 +170,18 @@ return {
 
 	{
 		"kylechui/nvim-surround",
-		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		version = "*",
 		event = "VeryLazy",
 		config = function()
 			require("nvim-surround").setup({})
-		end,
-	},
 
-	{
-		"roobert/surround-ui.nvim",
-		dependencies = {
-			"kylechui/nvim-surround",
-			"folke/which-key.nvim",
-		},
-		config = function()
-			require("surround-ui").setup({
-				root_key = "S",
-			})
+			vim.keymap.set("n", "ysiw)", "<cmd>normal! ysiw)<CR>", { desc = "Surround words with parentheses" })
+			vim.keymap.set("n", 'ys$"', '<cmd>normal! ys$"<CR>', { desc = "Make strings" })
+			vim.keymap.set("n", "ds]", "<cmd>normal! ds]<CR>", { desc = "Delete around square brackets" })
+			vim.keymap.set("n", "dst", "<cmd>normal! dst<CR>", { desc = "Remove HTML tags" })
+			vim.keymap.set("n", "cs'", "<cmd>normal! cs'<CR>", { desc = "Change single quotes to double quotes" })
+			vim.keymap.set("n", "csth1", "<cmd>normal! csth1<CR>", { desc = "Change tag types to <h1>" })
+			vim.keymap.set("n", "dsf", "<cmd>normal! dsf<CR>", { desc = "Delete function calls" })
 		end,
 	},
 
@@ -210,26 +205,26 @@ return {
 		end,
 	},
 
-	-- {
-	-- 	"echasnovski/mini.surround",
-	-- 	version = "*",
-	-- 	config = function()
-	-- 		require("mini.surround").setup({
-	-- 			mappings = {
-	-- 				add = "sa", -- Add surrounding in Normal and Visual modes
-	-- 				delete = "sd", -- Delete surrounding
-	-- 				find = "sf", -- Find surrounding (to the right)
-	-- 				find_left = "sF", -- Find surrounding (to the left)
-	-- 				highlight = "sh", -- Highlight surrounding
-	-- 				replace = "sr", -- Replace surrounding
-	-- 				update_n_lines = "sn", -- Update `n_lines`
-	--
-	-- 				suffix_last = "l", -- Suffix to search with "prev" method
-	-- 				suffix_next = "n", -- Suffix to search with "next" method
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
+	{
+		"echasnovski/mini.surround",
+		version = "*",
+		config = function()
+			require("mini.surround").setup({
+				mappings = {
+					add = "sa", -- Add surrounding in Normal and Visual modes
+					delete = "sd", -- Delete surrounding
+					find = "sf", -- Find surrounding (to the right)
+					find_left = "sF", -- Find surrounding (to the left)
+					highlight = "sh", -- Highlight surrounding
+					replace = "sr", -- Replace surrounding
+					update_n_lines = "sn", -- Update `n_lines`
+
+					suffix_last = "l", -- Suffix to search with "prev" method
+					suffix_next = "n", -- Suffix to search with "next" method
+				},
+			})
+		end,
+	},
 
 	{
 		"karb94/neoscroll.nvim",

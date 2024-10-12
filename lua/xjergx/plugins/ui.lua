@@ -54,19 +54,19 @@ return {
 			local handler = function(virtText, lnum, endLnum, width, truncate)
 				local newVirtText = {}
 				local suffix = ("  %d "):format(endLnum - lnum) -- NOTE: Aquí se usa la flecha ''
-				local sufWidth = vim.fn.strdisplaywidth(suffix)
+				local sufWidth = vim.function.strdisplaywidth(suffix)
 				local targetWidth = width - sufWidth
 				local curWidth = 0
 				for _, chunk in ipairs(virtText) do
 					local chunkText = chunk[1]
-					local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+					local chunkWidth = vim.function.strdisplaywidth(chunkText)
 					if targetWidth > curWidth + chunkWidth then
 						table.insert(newVirtText, chunk)
 					else
 						chunkText = truncate(chunkText, targetWidth - curWidth)
 						local hlGroup = chunk[2]
 						table.insert(newVirtText, { chunkText, hlGroup })
-						chunkWidth = vim.fn.strdisplaywidth(chunkText)
+						chunkWidth = vim.function.strdisplaywidth(chunkText)
 						-- str width returned from truncate() may less than 2nd argument, need padding
 						if curWidth + chunkWidth < targetWidth then
 							suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
@@ -102,7 +102,7 @@ return {
 					margin = { horizontal = 2, vertical = 2 },
 				},
 				render = function(props)
-					local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+					local filename = vim.function.functionamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
 					if filename == "" then
 						filename = "[No Name]"
 					end
@@ -132,12 +132,25 @@ return {
 
 	{
 		"vague2k/huez.nvim",
-		-- if you want registry related features, uncomment this
-		-- import = "huez-manager.import"
 		branch = "stable",
 		event = "UIEnter",
 		config = function()
 			require("huez").setup({})
 		end,
+	},
+
+	{
+		"chrisgrieser/nvim-rip-substitute",
+		cmd = "RipSubstitute",
+		keys = {
+			{
+				"<leader>rs",
+				function()
+					require("rip-substitute").sub()
+				end,
+				mode = { "n", "x" },
+				desc = " rip substitute",
+			},
+		},
 	},
 }
