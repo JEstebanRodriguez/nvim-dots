@@ -1,7 +1,12 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.8",
-	dependencies = { "nvim-lua/plenary.nvim" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"debugloop/telescope-undo.nvim",
+		"nvim-telescope/telescope-file-browser.nvim",
+		"nvim-telescope/telescope-fzf-native.nvim",
+	},
 	config = function()
 		local function calculate_height()
 			if vim.o.lines <= 40 then
@@ -12,7 +17,8 @@ return {
 			end
 		end
 		local initial_height = calculate_height()
-		require("telescope").setup({
+		local telescope = require("telescope")
+		telescope.setup({
 			defaults = {
 				-- mappings = {
 				-- 	i = { ["<c-t>"] = open_with_trouble },
@@ -21,9 +27,9 @@ return {
 				prompt_prefix = "🔍 ",
 				layout_strategy = "horizontal",
 				layout_config = {
-					prompt_position = "top", -- Position the prompt at the top
-					height = initial_height, -- Set the initial height
-					width = vim.o.columns, -- Occupy the full width of the window
+					prompt_position = "top",
+					height = initial_height,
+					width = vim.o.columns,
 					preview_cutoff = 0, -- Always show the preview
 					mirror = false, -- Place the preview on the right
 					-- anchor = "S", -- Anchor the layout to the bottom
@@ -79,10 +85,31 @@ return {
 				-- },
 			},
 		})
+
+		-- telescope.load_extension("fzf")
+		telescope.load_extension("file_browser")
+		telescope.load_extension("undo")
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
 		vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 		vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+		vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Telescope diagnostics" })
+		vim.keymap.set("n", "<leader>fu", builtin.git_files, { desc = "Telescope git files" })
+
+		vim.keymap.set("n", "<leader>ft", builtin.treesitter, { desc = "Telescope treesitter" })
+		vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Telescope keymaps" })
+
+		vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Telescope oldfiles" })
+		vim.keymap.set("n", "<leader>fc", builtin.commands, { desc = "Telescope commands" })
+
+		vim.keymap.set("n", "<leader>fm", builtin.man_pages, { desc = "Telescope man pages" })
+		-- vim.keymap.set(
+		-- 	"n",
+		-- 	"<leader>fb",
+		-- 	builtin.extensions.file_browser.file_browser,
+		-- 	{ desc = "Telescope file browser" }
+		-- )
+		vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Telescope undo" })
 	end,
 }

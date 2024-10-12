@@ -17,10 +17,10 @@ keymap("n", "0", "^", options("Go to beginning of line"))
 -- keymap("n", "<M-k>", ":m .-2<CR>==", options("Move line up"))
 
 -- Diagnostic keymaps
-keymap("n", "[d", vim.diagnostic.goto_prev, options("Go to previous [D]iagnostic message"))
-keymap("n", "]d", vim.diagnostic.goto_next, options("Go to next [D]ikeymapge"))
-keymap("n", "<leader>e", vim.diagnostic.open_float, options("Show diagnokeymapessages"))
-keymap("n", "<leader>q", vim.diagnostic.setloclist, options("Open diagnostic [Q]uickfix list"))
+-- keymap("n", "[d", options("Go to previous [D]iagnostic message"), vim.diagnostic.goto_prev)
+-- keymap("n", "]d", vim.diagnostic.goto_next, options("Go to next [D]ikeymapge"))
+-- keymap("n", "<leader>e", vim.diagnostic.open_float, options("Show diagnokeymapessages"))
+-- keymap("n", "<leader>q", vim.diagnostic.setloclist, options("Open diagnostic [Q]uickfix list"))
 
 --  See `:help wincmd` for a list of all window commands
 keymap("n", "<C-h>", "<C-w><C-h>", options("Move focus to the left window"))
@@ -31,8 +31,6 @@ keymap("n", "<C-k>", "<C-w><C-k>", options("Move focus to the upper window"))
 --save file
 keymap({ "n", "v", "i" }, "<C-s>", "<CMD>:w<CR><ESC>", options("Save File"))
 keymap({ "n", "v", "i" }, "<C-s>", "<CMD>:w<CR><ESC>", options("Save File"))
--- keymap('n', '<leader>e', '<CMD>:NvimTreeToggle<CR>', options 'Toggle NvimTree')
-keymap("n", "<leader>e", "<CMD>Neotree toggle<CR>", options("Toggle NeoTree"))
 keymap("n", "<C-a>", "gg<S-v>G", options("Select All"))
 
 --- move line below
@@ -46,7 +44,7 @@ keymap("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
 keymap("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 
 --- ====== UTILS ======
-keymap("n", "<leader>u", "<CMD>:UndotreeToggle<CR>", options("Toggle Undotree"))
+-- keymap("n", "<leader>u", "<CMD>:UndotreeToggle<CR>", options("Toggle Undotree"))
 keymap("n", "<leader>U", "<CMD>:UndotreeFocus<CR>", options("Focus Undotree"))
 keymap("n", "<leader>ts", "<CMD>:Huez<CR>", options("Huez"))
 keymap("n", "<leader>rn", ":IncRename ", options("Rename Variable"))

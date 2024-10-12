@@ -1,5 +1,6 @@
 return {
-	"Exafunction/codeium.vim",
+	{
+		"Exafunction/codeium.vim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"hrsh7th/nvim-cmp",
@@ -20,4 +21,5 @@ return {
 			-- 	return vim.fn["codeium#Clear"]()
 			-- end, { expr = true })
 		end,
+	},
 }
