@@ -13,11 +13,24 @@ return {
 					enable = true,
 					chars = {
 						"│",
-						"│",
-						"│",
-						"│",
+					},
+					style = {
+						vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui"),
 					},
 				},
+				line_num = {
+					enable = true,
+					style = "#806d9c",
+				},
+				-- indent = {
+				-- 	enable = true,
+				-- 	chars = {
+				-- 		"│",
+				-- 		"│",
+				-- 		"│",
+				-- 		"│",
+				-- 	},
+				-- },
 			})
 		end,
 	},
@@ -27,8 +40,6 @@ return {
 		dependencies = { "echasnovski/mini.icons" },
 		config = function()
 			local startify = require("alpha.themes.startify")
-			-- available: devicons, mini, default is mini
-			-- if provider not loaded and enabled is true, it will try to use another provider
 			startify.file_icons.provider = "devicons"
 			startify.section.header.val = {
 				[[                                                      ]],
@@ -67,7 +78,6 @@ return {
 						local hlGroup = chunk[2]
 						table.insert(newVirtText, { chunkText, hlGroup })
 						chunkWidth = vim.fn.strdisplaywidth(chunkText)
-						-- str width returned from truncate() may less than 2nd argument, need padding
 						if curWidth + chunkWidth < targetWidth then
 							suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
 						end

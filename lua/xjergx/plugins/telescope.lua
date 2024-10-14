@@ -10,7 +10,7 @@ return {
 	config = function()
 		local function calculate_height()
 			if vim.o.lines <= 40 then
-				return vim.o.lines -- 100% height for small terminals
+				return vim.o.lines
 			else
 				-- return math.floor(vim.o.lines * 0.96) -- 30% height for larger terminals
 				return vim.o.lines
@@ -30,12 +30,12 @@ return {
 					prompt_position = "top",
 					height = initial_height,
 					width = vim.o.columns,
-					preview_cutoff = 0, -- Always show the preview
-					mirror = false, -- Place the preview on the right
+					preview_cutoff = 0,
+					mirror = false,
 					-- anchor = "S", -- Anchor the layout to the bottom
 				},
 				sorting_strategy = "ascending",
-				winblend = 0, -- No transparency
+				winblend = 1, -- No transparency
 				results_title = false, -- Remove the "Results" title
 				borderchars = {
 					prompt = { "─", " ", " ", " ", " ", " ", " ", " " }, -- Top border for the prompt only
