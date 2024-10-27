@@ -1,5 +1,24 @@
 return {
 	{
+		"RRethy/nvim-treesitter-textsubjects",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				textsubjects = {
+					enable = true,
+					prev_selection = ",", -- (Optional) keymap to select the previous selection
+					keymaps = {
+						["."] = "textsubjects-smart",
+						[";"] = "textsubjects-container-outer",
+						["i;"] = {
+							"textsubjects-container-inner",
+							desc = "Select inside containers (classes, functions, etc.)",
+						},
+					},
+				},
+			})
+		end,
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		dependencies = {
@@ -9,21 +28,18 @@ return {
 		},
 		config = function()
 			local configs = require("nvim-treesitter.configs")
-
 			configs.setup({
-				ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+				ensure_installed = { "lua", "vue", "typescript", "scss", "c_sharp", "vue", "javascript", "html" },
 				sync_install = false,
 				highlight = { enable = true },
 				indent = { enable = true },
-				textsubjects = {
+				context = {
 					enable = true,
-					prev_selection = ",",
-					keymaps = {
-						["."] = "textsubjects-smart",
-						[";"] = "textsubjects-container-outer",
-						["i;"] = {
-							"textsubjects-container-inner",
-							desc = "Select inside containers (classes, functions, etc.)",
+					throttle = true,
+					max_lines = 2,
+					patterns = {
+						class = {
+							"extends",
 						},
 					},
 				},

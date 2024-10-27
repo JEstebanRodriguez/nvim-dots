@@ -7,7 +7,12 @@ keymap("n", "n", "nzzzv", options("Next search result"))
 keymap("n", "N", "Nzzzv", options("Previous search result"))
 keymap("n", "<C-6>", "<C-^>", options("Previous buffer"))
 
+--clipboard
+keymap({ "n", "v" }, "<C-c>", "+y", options("Copy to clipboard"))
+keymap({ "n", "v" }, "<C-v>", "+p", options("Paste from clipboard"))
+
 keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", options("Clear search highlights"))
+keymap("n", "<leader>e", "<CMD>Neotree toggle<CR>", options("Toggle [E]xplorer"))
 
 keymap("n", "<leader>tsv", ":vsp term://zsh<CR>", options("Open [T]erminal [V]ertical"))
 keymap("n", "<leader>tsh", ":sp term://zsh<CR>", options("Open [T]erminal [H]orizontal"))

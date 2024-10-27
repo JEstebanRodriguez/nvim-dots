@@ -7,12 +7,8 @@ require("nvim-dap-virtual-text").setup({
 	enabled = true,
 })
 
--- for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/xjergx/dap/configs/*.lua", true)) do
--- 	loadfile(ft_path)()
--- end
-
 -- Signs
-vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "▶", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapBreakpointRejected", { text = "🚫", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapBreakpointCondition", { text = "❓", texthl = "", linehl = "", numhl = "" })
@@ -22,31 +18,6 @@ require("xjergx.config.dap.configs.dotnet")
 -- require("xjergx.config.dap.configs.go")
 require("xjergx.config.dap.configs.javascript")
 
--- UI structure
--- dapui.setup({
--- 	icons = { expanded = "▾", collapsed = "▸" },
--- 	layouts = {
--- 		{
--- 			elements = {
--- 				"scopes",
--- 				"breakpoints",
--- 				"stacks",
--- 				"watches",
--- 			},
--- 			size = 80,
--- 			position = "right",
--- 		},
--- 		{
--- 			elements = {
--- 				"repl",
--- 				"console",
--- 			},
--- 			size = 10,
--- 			position = "bottom",
--- 		},
--- 	},
--- })
---
 dapui.setup({
 	layouts = {
 		{
@@ -60,10 +31,10 @@ dapui.setup({
 		},
 		{
 			elements = {
-				"repl",
 				"console",
+				"repl",
 			},
-			size = 0.25, -- 25% of total lines
+			size = 0.25,
 			position = "bottom",
 		},
 	},
@@ -82,7 +53,6 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 	dapui.close()
 end
 
--- Configurar teclas para depuración y dap-ui
 vim.api.nvim_set_keymap("n", "<F5>", '<cmd>lua require"dap".continue()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<F10>", '<cmd>lua require"dap".step_over()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<F11>", '<cmd>lua require"dap".step_into()<CR>', { noremap = true, silent = true })

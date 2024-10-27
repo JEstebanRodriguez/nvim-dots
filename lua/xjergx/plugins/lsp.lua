@@ -1,5 +1,7 @@
 return {
 	{ "folke/neoconf.nvim" },
+	{ "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
+	{ "hrsh7th/cmp-nvim-lsp" },
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -8,6 +10,8 @@ return {
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			"pmizio/typescript-tools.nvim",
 			{ "j-hui/fidget.nvim", opts = {} },
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
@@ -147,20 +151,36 @@ return {
 				},
 			})
 
+			-- lspconfig.jsonls.setup({
+			-- 	cmd = { "vscode-json-language-server", "--stdio" },
+			-- 	filetypes = { "json", "jsonc" },
+			-- 	init_options = {
+			-- 		provideFormatter = false,
+			-- 	},
+			-- 	root_dir = function()
+			-- 		return vim.loop.cwd()
+			-- 	end,
+			-- })
+
 			lspconfig.omnisharp.setup({
 				capabilities = capabilities,
-				filetypes = { "cs", "vb" },
-				root_dir = function(fname)
-					return lspconfig.util.root_pattern("*.sln", "*.csproj", "project.json")(fname)
-				end,
 				settings = {
-					omnisharp = {
-						enable_editorconfig_support = true,
-						enable_ms_build_load_projects_on_demand = true,
-						enable_roslyn_analyzers = true,
-						organize_imports_on_format = true,
-						enable_import_completion = true,
-						enable_roslyn_diagnostics = true,
+					RoslynExtensionsOptions = {
+						Enable = true,
+						InlayHintsOptions = {
+							EnableForParameters = true,
+							ForLiteralParameters = true,
+							ForIndexerParameters = true,
+							ForObjectCreationParameters = true,
+							ForOtherParameters = true,
+							SuppressForParametersThatDifferOnlyBySuffix = nil,
+							SuppressForParametersThatMatchMethodIntent = nil,
+							SuppressForParametersThatMatchArgumentName = nil,
+							EnableForTypes = true,
+							ForImplicitVariableTypes = true,
+							ForLambdaParameterTypes = true,
+							ForImplicitObjectCreation = true,
+						},
 					},
 				},
 			})
@@ -169,14 +189,16 @@ return {
 	{
 		"williamboman/mason.nvim",
 		config = function()
-			require("mason").setup()
+			require("mason").setup({
+				ensure_installed = { "eslint", "ts_ls", "omnisharp", "cssls", "lua_ls", "volar", "vuels" },
+			})
 		end,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "eslint", "ts_ls", "omnisharp_mono", "cssls", "lua_ls", "volar", "vuels" },
+				ensure_installed = { "eslint", "ts_ls", "omnisharp", "cssls", "lua_ls", "volar", "vuels" },
 			})
 		end,
 	},

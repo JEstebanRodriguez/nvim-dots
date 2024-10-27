@@ -34,7 +34,8 @@ return { -- Autoformat
 			lua = { "stylua" },
 			cs = { "csharpier" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
-			vue = { "prettierd", "prettier", stop_after_first = true },
+			-- vue = { "prettierd", "prettier", stop_after_first = true },
+			vue = { "eslint_d", "eslint", stop_after_first = true },
 			typescript = { "prettierd", "prettier", stop_after_first = true },
 		},
 

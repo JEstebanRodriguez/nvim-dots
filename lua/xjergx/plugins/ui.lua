@@ -1,9 +1,4 @@
 return {
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	main = "ibl",
-	-- 	opts = {},
-	-- },
 	{
 		"shellRaining/hlchunk.nvim",
 		event = { "BufReadPre", "BufNewFile" },
@@ -100,7 +95,6 @@ return {
 			vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 		end,
 	},
-
 	{
 		"b0o/incline.nvim",
 		config = function()
@@ -143,7 +137,6 @@ return {
 	{
 		"vague2k/huez.nvim",
 		branch = "stable",
-		event = "UIEnter",
 		config = function()
 			require("huez").setup({})
 		end,
@@ -162,5 +155,39 @@ return {
 				desc = " rip substitute",
 			},
 		},
+	},
+
+	{
+		"j-hui/fidget.nvim",
+		opts = {},
+	},
+
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			-- "nvim-tree/nvim-web-devicons",
+			"echasnovski/mini.icons",
+			"MunifTanjim/nui.nvim",
+			"3rd/image.nvim",
+		},
+		config = function()
+			require("neo-tree").setup({
+				-- enable_git_status = true,
+				-- enable_diagnostics = true,
+				-- source_selector = {
+				-- 	winbar = true,
+				-- 	statusline = true,
+				-- },
+				filesystem = {
+					filtered_items = {
+						visible = true, -- Muestra archivos ocultos
+						hide_dotfiles = false, -- No ocultar archivos que comienzan con un punto (.)
+						hide_gitignored = false, -- No ocultar archivos ignorados por git
+					},
+					-- Otras configuraciones que desees
+				},
+			})
+		end,
 	},
 }
